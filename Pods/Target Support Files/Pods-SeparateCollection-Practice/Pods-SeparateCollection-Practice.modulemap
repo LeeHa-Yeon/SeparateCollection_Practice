@@ -1,0 +1,6 @@
+module Pods_SeparateCollection_Practice {
+  umbrella header "Pods-SeparateCollection-Practice-umbrella.h"
+
+  export *
+  module * { export * }
+}
