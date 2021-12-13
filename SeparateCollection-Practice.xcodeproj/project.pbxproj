@@ -13,6 +13,8 @@
 		9F1A62652764CFB90006260F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F1A62642764CFB90006260F /* Assets.xcassets */; };
 		9F1A62682764CFB90006260F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F1A62662764CFB90006260F /* LaunchScreen.storyboard */; };
 		9F71EF102767B4D400DAF5AA /* LodingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F71EF0F2767B4D400DAF5AA /* LodingViewController.swift */; };
+		9F71EF142767BD7100DAF5AA /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F71EF132767BD7100DAF5AA /* CameraViewController.swift */; };
+		9F71EF162767D3DF00DAF5AA /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F71EF152767D3DF00DAF5AA /* PreviewView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +27,8 @@
 		9F1A62672764CFB90006260F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F1A62692764CFB90006260F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F71EF0F2767B4D400DAF5AA /* LodingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LodingViewController.swift; sourceTree = "<group>"; };
+		9F71EF132767BD7100DAF5AA /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		9F71EF152767D3DF00DAF5AA /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
 		EA57406ECF6423729E60C69A /* libPods-SeparateCollection-Practice.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SeparateCollection-Practice.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -46,7 +50,6 @@
 				03D67A77BBBCEAB7D470A269 /* Pods-SeparateCollection-Practice.debug.xcconfig */,
 				62A1A5806EA23345C3647663 /* Pods-SeparateCollection-Practice.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -91,7 +94,9 @@
 		9F71EF112767B4D900DAF5AA /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				9F71EF152767D3DF00DAF5AA /* PreviewView.swift */,
 				9F71EF0F2767B4D400DAF5AA /* LodingViewController.swift */,
+				9F71EF132767BD7100DAF5AA /* CameraViewController.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -201,7 +206,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F71EF162767D3DF00DAF5AA /* PreviewView.swift in Sources */,
 				9F1A625C2764CFB80006260F /* AppDelegate.swift in Sources */,
+				9F71EF142767BD7100DAF5AA /* CameraViewController.swift in Sources */,
 				9F71EF102767B4D400DAF5AA /* LodingViewController.swift in Sources */,
 				9F1A625E2764CFB80006260F /* SceneDelegate.swift in Sources */,
 			);
