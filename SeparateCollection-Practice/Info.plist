@@ -7,9 +7,9 @@
 		<string></string>
 	</array>
 	<key>Privacy - Camera Usage Description </key>
-	<string></string>
+	<string>FullScreen Cam uses the camera to take photos and video</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string></string>
+	<string>FullScreen Cam saves captured photos and videos to your photo library</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
