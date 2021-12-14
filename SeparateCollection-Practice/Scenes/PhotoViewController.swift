@@ -8,6 +8,9 @@
 import UIKit
 import SnapKit
 import Then
+import Alamofire
+
+let apiKey: String = "cPs6pJefrpTBaBSaw8K2rL3a"
 
 class PhotoViewController: UIViewController {
     
@@ -20,10 +23,17 @@ class PhotoViewController: UIViewController {
         let image = #imageLiteral(resourceName: "cameraBtn")
         $0.setImage(image, for: .normal)
         $0.contentMode = .scaleAspectFill
-        $0.addTarget(self, action: #selector(uploadPhoto), for: .touchUpInside) //2
-
+        $0.addTarget(self, action: #selector(uploadPhoto), for: .touchUpInside)
+        
     }
-
+    lazy var removeButton = UIButton(frame: .zero).then {
+        let image = #imageLiteral(resourceName: "xBtn")
+        $0.setImage(image, for: .normal)
+        $0.contentMode = .scaleAspectFill
+        $0.addTarget(self, action: #selector(removeBgPhoto), for: .touchUpInside)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
@@ -32,6 +42,7 @@ class PhotoViewController: UIViewController {
     func setUI(){
         view.addSubview(photoImageView)
         view.addSubview(photoButton)
+        view.addSubview(removeButton)
         view.subviews.forEach { view in view.translatesAutoresizingMaskIntoConstraints = false
             view.sizeToFit()
         }
@@ -47,9 +58,15 @@ class PhotoViewController: UIViewController {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(photoImageView.snp.bottom).offset(20)
         }
-
+        
+        removeButton.snp.makeConstraints{
+            $0.width.height.equalTo(40)
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(photoButton.snp.bottom).offset(20)
+        }
+        
     }
-
+    
     @objc func uploadPhoto() {
         photoImageView.backgroundColor = .clear
         let imagePicker = UIImagePickerController()
@@ -57,7 +74,35 @@ class PhotoViewController: UIViewController {
         imagePicker.delegate = self
         present(imagePicker, animated: true)
     }
-
+    
+    @objc func removeBgPhoto() {
+        guard let jpgData = self.photoImageView.image?.jpegData(compressionQuality: 0.8) else { return }
+        
+        AF.upload(
+            multipartFormData: { builder in
+                builder.append(
+                    jpgData,
+                    withName: "image_file",
+                    fileName: "file.jpg",
+                    mimeType: "image/jpeg"
+                )
+            },
+            to: URL(string: "https://api.remove.bg/v1.0/removebg")!,
+            headers: [
+                "X-Api-Key": apiKey
+            ]
+        ).responseJSON { json in
+            if let imageData = json.data {
+                guard let img = UIImage(data: imageData) else {
+                    print("실패")
+                    return
+                }
+                self.photoImageView.image = img
+            }
+        }
+    }
+    
+    
 }
 
 extension PhotoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

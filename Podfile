@@ -10,5 +10,6 @@ target 'SeparateCollection-Practice' do
   pod 'SnapKit', '~> 5.0.0'
   pod 'Then'
   pod 'lottie-ios'
+  pod 'Alamofire'
 
 end
