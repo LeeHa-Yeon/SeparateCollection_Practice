@@ -2,11 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string></string>
-	</array>
-	<key>Privacy - Camera Usage Description </key>
+	<key>NSCameraUsageDescription</key>
 	<string>FullScreen Cam uses the camera to take photos and video</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>FullScreen Cam saves captured photos and videos to your photo library</string>
