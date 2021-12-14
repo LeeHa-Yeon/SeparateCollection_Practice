@@ -12,6 +12,7 @@
 		9F01A3A52768694200C17037 /* trash1.json in Resources */ = {isa = PBXBuildFile; fileRef = 9F01A3A32768694200C17037 /* trash1.json */; };
 		9F0E66D927692E3700770FAE /* HowToUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0E66D827692E3700770FAE /* HowToUseViewController.swift */; };
 		9F0E66DB2769370900770FAE /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0E66DA2769370900770FAE /* PhotoViewController.swift */; };
+		9F0E66DD27695F4000770FAE /* AnalyzeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0E66DC27695F4000770FAE /* AnalyzeViewController.swift */; };
 		9F1A625C2764CFB80006260F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1A625B2764CFB80006260F /* AppDelegate.swift */; };
 		9F1A625E2764CFB80006260F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1A625D2764CFB80006260F /* SceneDelegate.swift */; };
 		9F1A62652764CFB90006260F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F1A62642764CFB90006260F /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 		9F01A3A32768694200C17037 /* trash1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = trash1.json; sourceTree = "<group>"; };
 		9F0E66D827692E3700770FAE /* HowToUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToUseViewController.swift; sourceTree = "<group>"; };
 		9F0E66DA2769370900770FAE /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		9F0E66DC27695F4000770FAE /* AnalyzeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeViewController.swift; sourceTree = "<group>"; };
 		9F1A62582764CFB80006260F /* SeparateCollection-Practice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SeparateCollection-Practice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F1A625B2764CFB80006260F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9F1A625D2764CFB80006260F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				9F0E66D827692E3700770FAE /* HowToUseViewController.swift */,
 				9F71EF132767BD7100DAF5AA /* CameraViewController.swift */,
 				9F0E66DA2769370900770FAE /* PhotoViewController.swift */,
+				9F0E66DC27695F4000770FAE /* AnalyzeViewController.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 				9F71EF142767BD7100DAF5AA /* CameraViewController.swift in Sources */,
 				9F0E66D927692E3700770FAE /* HowToUseViewController.swift in Sources */,
 				9F8FD825276917E50033D8E3 /* RegisterViewController.swift in Sources */,
+				9F0E66DD27695F4000770FAE /* AnalyzeViewController.swift in Sources */,
 				9F0E66DB2769370900770FAE /* PhotoViewController.swift in Sources */,
 				9F71EF102767B4D400DAF5AA /* LodingViewController.swift in Sources */,
 				9F1A625E2764CFB80006260F /* SceneDelegate.swift in Sources */,
