@@ -6,24 +6,68 @@
 //
 
 import UIKit
+import SnapKit
+import Then
 
 class PhotoViewController: UIViewController {
+    
+    lazy var photoImageView = UIImageView().then {
+        $0.backgroundColor = .gray
+        $0.contentMode = .scaleAspectFill
+    }
+    
+    lazy var photoButton = UIButton(frame: .zero).then {
+        let image = #imageLiteral(resourceName: "cameraBtn")
+        $0.setImage(image, for: .normal)
+        $0.contentMode = .scaleAspectFill
+        $0.addTarget(self, action: #selector(uploadPhoto), for: .touchUpInside) //2
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setUI()
     }
     
+    func setUI(){
+        view.addSubview(photoImageView)
+        view.addSubview(photoButton)
+        view.subviews.forEach { view in view.translatesAutoresizingMaskIntoConstraints = false
+            view.sizeToFit()
+        }
+        
+        photoImageView.snp.makeConstraints{
+            $0.width.height.equalTo(300)
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+        }
+        
+        photoButton.snp.makeConstraints{
+            $0.width.height.equalTo(40)
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(photoImageView.snp.bottom).offset(20)
+        }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
 
+    @objc func uploadPhoto() {
+        photoImageView.backgroundColor = .clear
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
+        present(imagePicker, animated: true)
+    }
+
+}
+
+extension PhotoViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            photoImageView.contentMode = .scaleAspectFit
+            photoImageView.image = pickedImage
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) { dismiss(animated: true, completion: nil)
+    }
 }
