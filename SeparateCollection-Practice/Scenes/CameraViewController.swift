@@ -27,21 +27,28 @@ class CameraViewController: UIViewController {
     // MARK: - Components
     
     private lazy var photoLibraryButton = UIButton().then {
-        $0.setTitle("사진첩", for: .normal)
+        let image = #imageLiteral(resourceName: "ic_photo_camera")
+        $0.setImage(image, for: .normal)
+        $0.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         $0.layer.cornerRadius = 10
         $0.layer.masksToBounds = true
         $0.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         $0.layer.borderWidth = 1
     }
-    private var previewView: PreviewView!
+    let previewView =  PreviewView().then {
+        $0.backgroundColor = .gray
+    }
     private lazy var captureButton = UIButton().then {
-        $0.setTitle("캡쳐", for: .normal)
-        $0.layer.cornerRadius = $0.bounds.height / 2
+        let image = #imageLiteral(resourceName: "cameraBtn")
+        $0.setImage(image, for: .normal)
+        $0.backgroundColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
+        $0.layer.cornerRadius = 33
         $0.layer.masksToBounds = true
     }
-    private var blurBGView: UIVisualEffectView!
+//    private var blurBGView: UIVisualEffectView!
     private lazy var switchButton = UIButton().then {
-        $0.setTitle("전환", for: .normal)
+        let image = #imageLiteral(resourceName: "cameraSwitch_front")
+        $0.setImage(image, for: .normal)
         $0.layer.cornerRadius = $0.bounds.height / 2
         $0.layer.masksToBounds = true
     }
@@ -51,8 +58,8 @@ class CameraViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setInit()
         setUI()
+        setInit()
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -71,6 +78,34 @@ class CameraViewController: UIViewController {
     
     func setUI(){
         //TODO: - 레이아웃 잡기
+        view.addSubview(previewView)
+//        view.addSubview(blurBGView)
+        view.addSubview(captureButton)
+        view.addSubview(switchButton)
+        view.addSubview(photoLibraryButton)
+        
+        previewView.snp.makeConstraints{
+            $0.top.bottom.leading.trailing.equalToSuperview()
+        }
+        switchButton.snp.makeConstraints{
+            $0.width.height.equalTo(45)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-20)
+        }
+//        blurBGView.snp.makeConstraints{
+//            $0.width.height.equalTo(captureButton.snp.width).offset(20.0)
+//        }
+        captureButton.snp.makeConstraints{
+            $0.centerX.equalTo(view.safeAreaLayoutGuide)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-30)
+            $0.width.height.equalTo(65)
+        }
+        photoLibraryButton.snp.makeConstraints{
+            $0.centerY.equalTo(captureButton)
+            $0.width.height.equalTo(40)
+            $0.trailing.equalTo(captureButton.snp.leading).offset(-50)
+        }
+    
     }
 }
 
@@ -138,6 +173,6 @@ extension CameraViewController {
 
 extension CameraViewController: AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        <#code#>
+        print("추후에 작성")
     }
 }
