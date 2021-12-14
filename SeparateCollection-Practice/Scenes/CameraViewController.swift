@@ -26,6 +26,12 @@ class CameraViewController: UIViewController {
     
     // MARK: - Components
     
+    private lazy var backBtn = UIButton().then {
+        let image = #imageLiteral(resourceName: "xBtn")
+        $0.setImage(image, for: .normal)
+        $0.addTarget(self, action: #selector(xBtnPressed(_:)), for: .touchUpInside)
+    }
+    
     private lazy var photoLibraryButton = UIButton().then {
         let image = #imageLiteral(resourceName: "ic_photo_camera")
         $0.setImage(image, for: .normal)
@@ -86,13 +92,14 @@ class CameraViewController: UIViewController {
         view.addSubview(captureButton)
         view.addSubview(switchButton)
         view.addSubview(photoLibraryButton)
+        view.addSubview(backBtn)
         
         previewView.snp.makeConstraints{
             $0.top.bottom.leading.trailing.equalToSuperview()
         }
         switchButton.snp.makeConstraints{
             $0.width.height.equalTo(45)
-            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-20)
         }
         //        blurBGView.snp.makeConstraints{
@@ -107,6 +114,11 @@ class CameraViewController: UIViewController {
             $0.centerY.equalTo(captureButton)
             $0.width.height.equalTo(40)
             $0.trailing.equalTo(captureButton.snp.leading).offset(-50)
+        }
+        backBtn.snp.makeConstraints{
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.leading.equalToSuperview().offset(40)
+            $0.height.width.equalTo(20)
         }
         
     }
@@ -142,6 +154,16 @@ class CameraViewController: UIViewController {
                 print(" error to save photo library")
             }
         }
+    }
+    
+    func captureAlert(){
+        let alert = UIAlertController(title: "저장 완료", message: "사진첩을 통해 사진을 확인해주세요", preferredStyle: UIAlertController.Style.alert)
+                 
+        // Create the Actions //버튼 리스너
+        let okAction = UIAlertAction(title: "확인", style: .default) { (action) in }
+        alert.addAction(okAction)
+                 
+        present(alert, animated: false, completion: nil)
     }
     
     // MARK: - objc Functions
@@ -204,7 +226,12 @@ class CameraViewController: UIViewController {
             let setting = AVCapturePhotoSettings()
             self.photoOutput.capturePhoto(with: setting, delegate: self)
         }
+        captureAlert()
         
+    }
+    // xBtnPressed
+    @objc func xBtnPressed(_ sender: UIButton){
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
