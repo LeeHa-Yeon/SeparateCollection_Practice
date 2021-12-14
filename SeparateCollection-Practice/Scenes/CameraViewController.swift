@@ -22,7 +22,7 @@ class CameraViewController: UIViewController {
     // 비디오 프로세싱이 일어날 별도의 큐를 생성
     let sessionQueue = DispatchQueue(label: "session Queue")
     // 디바이스를 찾는 것을 도와줄 객체 생성
-    let videoDeviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInDualCamera, .builtInDualWideCamera, .builtInTrueDepthCamera], mediaType: .video, position: .back)
+    let videoDeviceDiscoverySession = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInDualCamera, .builtInDualWideCamera, .builtInTrueDepthCamera], mediaType: .video, position: .unspecified )
     
     // MARK: - Components
     
@@ -45,12 +45,13 @@ class CameraViewController: UIViewController {
         $0.layer.cornerRadius = 33
         $0.layer.masksToBounds = true
     }
-//    private var blurBGView: UIVisualEffectView!
+    //    private var blurBGView: UIVisualEffectView!
     private lazy var switchButton = UIButton().then {
         let image = #imageLiteral(resourceName: "cameraSwitch_front")
         $0.setImage(image, for: .normal)
         $0.layer.cornerRadius = $0.bounds.height / 2
         $0.layer.masksToBounds = true
+        $0.addTarget(self, action: #selector(switchCamera(_:)), for: .touchUpInside)
     }
     
     
@@ -79,7 +80,7 @@ class CameraViewController: UIViewController {
     func setUI(){
         //TODO: - 레이아웃 잡기
         view.addSubview(previewView)
-//        view.addSubview(blurBGView)
+        //        view.addSubview(blurBGView)
         view.addSubview(captureButton)
         view.addSubview(switchButton)
         view.addSubview(photoLibraryButton)
@@ -92,9 +93,9 @@ class CameraViewController: UIViewController {
             $0.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
             $0.trailing.equalTo(view.safeAreaLayoutGuide.snp.trailing).offset(-20)
         }
-//        blurBGView.snp.makeConstraints{
-//            $0.width.height.equalTo(captureButton.snp.width).offset(20.0)
-//        }
+        //        blurBGView.snp.makeConstraints{
+        //            $0.width.height.equalTo(captureButton.snp.width).offset(20.0)
+        //        }
         captureButton.snp.makeConstraints{
             $0.centerX.equalTo(view.safeAreaLayoutGuide)
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-30)
@@ -105,8 +106,72 @@ class CameraViewController: UIViewController {
             $0.width.height.equalTo(40)
             $0.trailing.equalTo(captureButton.snp.leading).offset(-50)
         }
-    
+        
     }
+    
+    func updateSwitchCameraIcon(position: AVCaptureDevice.Position) {
+        switch position {
+        case .front :
+            let image = #imageLiteral(resourceName: "cameraSwitch_rear")
+            switchButton.setImage(image, for: .normal)
+        case .back :
+            let image = #imageLiteral(resourceName: "cameraSwitch_front")
+            switchButton.setImage(image, for: .normal)
+        default :
+            break
+        }
+    }
+    
+    // MARK: - objc Functions
+    @objc func switchCamera(_ sender: UIButton!) {
+        // 카메라 1개 이상인지 확인
+        guard videoDeviceDiscoverySession.devices.count > 1 else {
+            return
+        }
+        
+        // 반대 카메라 찾아서 재설정
+        sessionQueue.async {
+            // 반대 카메라 찾기
+            let currentVideoDevice = self.videoDeviceInput.device
+            let currentPosition = currentVideoDevice.position
+            let isFront = currentPosition == .front
+            let preferredPosition: AVCaptureDevice.Position = isFront ? .back : .front
+            
+            let devices = self.videoDeviceDiscoverySession.devices
+            var newVideoDevice: AVCaptureDevice?
+            
+            newVideoDevice = devices.first(where: { device in
+                return preferredPosition == device.position
+            })
+            
+            // session 업데이트
+            if let newDevice = newVideoDevice {
+                do {
+                    let videoDeviceInput = try AVCaptureDeviceInput(device: newDevice)
+                    self.captureSession.beginConfiguration()
+                    self.captureSession.removeInput(self.videoDeviceInput)
+                    if self.captureSession.canAddInput(videoDeviceInput) {
+                        self.captureSession.addInput(videoDeviceInput)
+                        self.videoDeviceInput = videoDeviceInput
+                    }else {
+                        self.captureSession.addInput(self.videoDeviceInput)
+                    }
+                    self.captureSession.commitConfiguration()
+                    
+                    // captureSession update하는 부분을 sessionQueue에서 진행
+                    // 하지만, 아이콘 업데이트 부분은 mainQueue에서 진행해야됨 -> UI 관련 부분이기때문
+                    DispatchQueue.main.async {
+                        self.updateSwitchCameraIcon(position: preferredPosition)
+                    }
+                    
+                }catch let error{
+                    print("error occured while creating device input : \(error.localizedDescription)")
+                }
+            }
+        }
+        
+    }
+    
 }
 
 extension CameraViewController {
@@ -127,6 +192,7 @@ extension CameraViewController {
             if captureSession.canAddInput(videoDeviceInput){
                 // 넣을 수 있다면 그제서야 addInput을 진행
                 captureSession.addInput(videoDeviceInput)
+                self.videoDeviceInput = videoDeviceInput
             } else {
                 captureSession.commitConfiguration()
                 return
