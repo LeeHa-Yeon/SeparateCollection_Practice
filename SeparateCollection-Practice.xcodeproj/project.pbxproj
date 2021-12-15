@@ -17,6 +17,12 @@
 		9F1A625E2764CFB80006260F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1A625D2764CFB80006260F /* SceneDelegate.swift */; };
 		9F1A62652764CFB90006260F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F1A62642764CFB90006260F /* Assets.xcassets */; };
 		9F1A62682764CFB90006260F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F1A62662764CFB90006260F /* LaunchScreen.storyboard */; };
+		9F6AC22A2769724F00BDAE4A /* ImagePredictor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6AC2282769724E00BDAE4A /* ImagePredictor.swift */; };
+		9F6AC22F2769728E00BDAE4A /* VNClassificationObservation+confidenceString.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6AC22D2769728E00BDAE4A /* VNClassificationObservation+confidenceString.swift */; };
+		9F6AC2302769728E00BDAE4A /* CGImagePropertyOrientation+UIImageOrientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6AC22E2769728E00BDAE4A /* CGImagePropertyOrientation+UIImageOrientation.swift */; };
+		9F6AC236276972A300BDAE4A /* Recycle.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 9F6AC232276972A300BDAE4A /* Recycle.mlmodel */; };
+		9F6AC238276972A300BDAE4A /* NOTICE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9F6AC234276972A300BDAE4A /* NOTICE.txt */; };
+		9F6AC239276972A300BDAE4A /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9F6AC235276972A300BDAE4A /* LICENSE.txt */; };
 		9F71EF102767B4D400DAF5AA /* LodingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F71EF0F2767B4D400DAF5AA /* LodingViewController.swift */; };
 		9F71EF142767BD7100DAF5AA /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F71EF132767BD7100DAF5AA /* CameraViewController.swift */; };
 		9F71EF162767D3DF00DAF5AA /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F71EF152767D3DF00DAF5AA /* PreviewView.swift */; };
@@ -37,6 +43,12 @@
 		9F1A62642764CFB90006260F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F1A62672764CFB90006260F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9F1A62692764CFB90006260F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F6AC2282769724E00BDAE4A /* ImagePredictor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePredictor.swift; sourceTree = "<group>"; };
+		9F6AC22D2769728E00BDAE4A /* VNClassificationObservation+confidenceString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VNClassificationObservation+confidenceString.swift"; sourceTree = "<group>"; };
+		9F6AC22E2769728E00BDAE4A /* CGImagePropertyOrientation+UIImageOrientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGImagePropertyOrientation+UIImageOrientation.swift"; sourceTree = "<group>"; };
+		9F6AC232276972A300BDAE4A /* Recycle.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Recycle.mlmodel; sourceTree = "<group>"; };
+		9F6AC234276972A300BDAE4A /* NOTICE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NOTICE.txt; sourceTree = "<group>"; };
+		9F6AC235276972A300BDAE4A /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		9F71EF0F2767B4D400DAF5AA /* LodingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LodingViewController.swift; sourceTree = "<group>"; };
 		9F71EF132767BD7100DAF5AA /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		9F71EF152767D3DF00DAF5AA /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
@@ -95,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				9F1A625A2764CFB80006260F /* SeparateCollection-Practice */,
+				9F6AC231276972A300BDAE4A /* Models */,
 				9F1A62592764CFB80006260F /* Products */,
 				43607F9066B185DCEEE6FD53 /* Pods */,
 				84F76CEC056C64C4469D55F3 /* Frameworks */,
@@ -112,13 +125,42 @@
 		9F1A625A2764CFB80006260F /* SeparateCollection-Practice */ = {
 			isa = PBXGroup;
 			children = (
+				9F1A62692764CFB90006260F /* Info.plist */,
 				9F71EF122767B4E300DAF5AA /* Applications */,
 				9F01A3A02768684D00C17037 /* Resource */,
 				9F71EF112767B4D900DAF5AA /* Scenes */,
 				9F1A62662764CFB90006260F /* LaunchScreen.storyboard */,
-				9F1A62692764CFB90006260F /* Info.plist */,
+				9F6AC2272769724E00BDAE4A /* Image Predictor */,
+				9F6AC22C2769728E00BDAE4A /* Extensions */,
 			);
 			path = "SeparateCollection-Practice";
+			sourceTree = "<group>";
+		};
+		9F6AC2272769724E00BDAE4A /* Image Predictor */ = {
+			isa = PBXGroup;
+			children = (
+				9F6AC2282769724E00BDAE4A /* ImagePredictor.swift */,
+			);
+			path = "Image Predictor";
+			sourceTree = "<group>";
+		};
+		9F6AC22C2769728E00BDAE4A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				9F6AC22D2769728E00BDAE4A /* VNClassificationObservation+confidenceString.swift */,
+				9F6AC22E2769728E00BDAE4A /* CGImagePropertyOrientation+UIImageOrientation.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		9F6AC231276972A300BDAE4A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9F6AC232276972A300BDAE4A /* Recycle.mlmodel */,
+				9F6AC234276972A300BDAE4A /* NOTICE.txt */,
+				9F6AC235276972A300BDAE4A /* LICENSE.txt */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		9F71EF112767B4D900DAF5AA /* Scenes */ = {
@@ -203,6 +245,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F6AC239276972A300BDAE4A /* LICENSE.txt in Resources */,
+				9F6AC238276972A300BDAE4A /* NOTICE.txt in Resources */,
 				9F01A3A42768694200C17037 /* trash2.json in Resources */,
 				9F1A62682764CFB90006260F /* LaunchScreen.storyboard in Resources */,
 				9F01A3A52768694200C17037 /* trash1.json in Resources */,
@@ -243,9 +287,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F71EF162767D3DF00DAF5AA /* PreviewView.swift in Sources */,
+				9F6AC236276972A300BDAE4A /* Recycle.mlmodel in Sources */,
 				9F1A625C2764CFB80006260F /* AppDelegate.swift in Sources */,
+				9F6AC22F2769728E00BDAE4A /* VNClassificationObservation+confidenceString.swift in Sources */,
 				9F71EF142767BD7100DAF5AA /* CameraViewController.swift in Sources */,
+				9F6AC2302769728E00BDAE4A /* CGImagePropertyOrientation+UIImageOrientation.swift in Sources */,
 				9F0E66D927692E3700770FAE /* HowToUseViewController.swift in Sources */,
+				9F6AC22A2769724F00BDAE4A /* ImagePredictor.swift in Sources */,
 				9F8FD825276917E50033D8E3 /* RegisterViewController.swift in Sources */,
 				9F0E66DD27695F4000770FAE /* AnalyzeViewController.swift in Sources */,
 				9F0E66DB2769370900770FAE /* PhotoViewController.swift in Sources */,

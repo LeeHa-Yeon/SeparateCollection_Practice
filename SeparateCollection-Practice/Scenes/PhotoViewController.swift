@@ -98,6 +98,7 @@ class PhotoViewController: UIViewController {
     
     @objc func analyzeBtnPressed(_ sender: UIButton) {
         let analyzeVC = AnalyzeViewController()
+        analyzeVC.userSelectedPhoto(photoImageView.image!)
         self.present(analyzeVC,animated: true,completion: nil)
     }
     
@@ -150,3 +151,7 @@ extension PhotoViewController: UIImagePickerControllerDelegate, UINavigationCont
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) { dismiss(animated: true, completion: nil)
     }
 }
+
+
+
+
