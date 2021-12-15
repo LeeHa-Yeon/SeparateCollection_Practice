@@ -11,5 +11,6 @@ target 'SeparateCollection-Practice' do
   pod 'Then'
   pod 'lottie-ios'
   pod 'Alamofire'
+  pod 'Charts'
 
 end

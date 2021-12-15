@@ -18,6 +18,9 @@ import UIKit
 /// - Updates the delegate's `predictions` property
 /// - Tag: ImagePredictor
 class ImagePredictor {
+    
+    static var typeArr = [String]()
+    static var valueArr = [Double]()
     /// - Tag: name
     static func createImageClassifier() -> VNCoreMLModel {
         // Use a default model configuration.
@@ -91,7 +94,6 @@ class ImagePredictor {
         
         let handler = VNImageRequestHandler(cgImage: photoImage, orientation: orientation)
         let requests: [VNRequest] = [imageClassificationRequest]
-        
         // Start the image classification request.
         try handler.perform(requests)
     }
@@ -144,6 +146,12 @@ class ImagePredictor {
             // Convert each observation into an `ImagePredictor.Prediction` instance.
             Prediction(classification: observation.identifier,
                        confidencePercentage: observation.confidencePercentageString)
+        }
+        for i in 0..<6 {
+            if predictions != nil {
+                ImagePredictor.typeArr.append(predictions![i].classification)
+                ImagePredictor.valueArr.append(Double(predictions![i].confidencePercentage)!)
+            }
         }
     }
 }
