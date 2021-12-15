@@ -97,13 +97,13 @@ class RegisterViewController: UIViewController {
     // MARK: - objc Functions
     
     @objc func guideBtnPressed(_ sender: UIButton) {
-        let howToUseVC = UINavigationController(rootViewController: HowToUseViewController())
+        let howToUseVC = HowToUseViewController()
         howToUseVC.modalPresentationStyle = .fullScreen
         self.present(howToUseVC,animated: true,completion: nil)
     }
     
     @objc func cameraBtnPressed(_ sender: UIButton) {
-        let cameraVC = UINavigationController(rootViewController: CameraViewController())
+        let cameraVC = CameraViewController()
         cameraVC.modalPresentationStyle = .fullScreen
         self.present(cameraVC,animated: true,completion: nil)
     }

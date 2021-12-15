@@ -48,12 +48,20 @@ class PhotoViewController: UIViewController {
         $0.layer.cornerRadius = 10
     }
     
+    private lazy var backBtn = UIButton().then {
+        let image = #imageLiteral(resourceName: "xBtn")
+        $0.setImage(image, for: .normal)
+        $0.addTarget(self, action: #selector(xBtnPressed(_:)), for: .touchUpInside)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
     }
     
     func setUI(){
+        view.backgroundColor = .white
+        view.addSubview(backBtn)
         view.addSubview(removeButton)
         view.addSubview(photoButton)
         view.addSubview(imageViewFrame)
@@ -62,6 +70,12 @@ class PhotoViewController: UIViewController {
         
         view.subviews.forEach { view in view.translatesAutoresizingMaskIntoConstraints = false
             view.sizeToFit()
+        }
+        
+        backBtn.snp.makeConstraints{
+            $0.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            $0.leading.equalToSuperview().offset(40)
+            $0.height.width.equalTo(20)
         }
         
         imageViewFrame.snp.makeConstraints{
@@ -94,6 +108,11 @@ class PhotoViewController: UIViewController {
             $0.trailing.leading.equalToSuperview().inset(50)
         }
 
+    }
+    
+    // xBtnPressed
+    @objc func xBtnPressed(_ sender: UIButton){
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func analyzeBtnPressed(_ sender: UIButton) {
